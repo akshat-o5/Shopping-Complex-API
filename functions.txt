@@ -1,0 +1,44 @@
+// controllers.go
+package main
+
+import (
+	"encoding/json"
+	"github.com/gorilla/mux"
+	"net/http"
+)
+
+func GetShops(w http.ResponseWriter, r *http.Request) {
+	var shops []Shop
+	db.Find(&shops)
+	json.NewEncoder(w).Encode(shops)
+}
+
+func GetShop(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	var shop Shop
+	db.First(&shop, vars["id"])
+	json.NewEncoder(w).Encode(shop)
+}
+
+func CreateShop(w http.ResponseWriter, r *http.Request) {
+	var shop Shop
+	json.NewDecoder(r.Body).Decode(&shop)
+	db.Create(&shop)
+	json.NewEncoder(w).Encode(shop)
+}
+
+func UpdateShop(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	var shop Shop
+	db.First(&shop, vars["id"])
+	json.NewDecoder(r.Body).Decode(&shop)
+	db.Save(&shop)
+	json.NewEncoder(w).Encode(shop)
+}
+
+func DeleteShop(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	var shop Shop
+	db.First(&shop, vars["id"])
+	db.Delete(&shop)
+}
