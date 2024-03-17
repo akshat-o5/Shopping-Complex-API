@@ -1,4 +1,5 @@
 ﻿# Shopping-Complex-API
+The Shopping Complex API provides endpoints to manage shops within a shopping complex. Users can create, read, update, and delete shops, as well as retrieve shops based on their rent payment status. Additionally, the API allows for updating a shop's status and name.
 
 ## API Documentation
 [View API Documentation](https://documenter.getpostman.com/view/23129267/2sA2xnxA7D)
